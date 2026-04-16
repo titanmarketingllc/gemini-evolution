@@ -1,0 +1,169 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Gemini Evolution Design System */
+  --bg: #080810;
+  --card: #0f0f1a;
+  --accent: #7C3AED;
+  --gold: #F59E0B;
+  --text: #F8FAFC;
+  --muted: #94A3B8;
+  --border: #1e1e2e;
+  
+  /* Map to Tailwind tokens */
+  --background: #080810;
+  --foreground: #F8FAFC;
+  --card: #0f0f1a;
+  --card-foreground: #F8FAFC;
+  --popover: #0f0f1a;
+  --popover-foreground: #F8FAFC;
+  --primary: #7C3AED;
+  --primary-foreground: #FFFFFF;
+  --secondary: #1e1e2e;
+  --secondary-foreground: #F8FAFC;
+  --muted: #1e1e2e;
+  --muted-foreground: #94A3B8;
+  --accent: #7C3AED;
+  --accent-foreground: #FFFFFF;
+  --destructive: #ef4444;
+  --destructive-foreground: #FFFFFF;
+  --border: #1e1e2e;
+  --input: #1e1e2e;
+  --ring: #7C3AED;
+  --gold: #F59E0B;
+  --radius: 0.75rem;
+}
+
+@theme inline {
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-mono: 'Geist Mono', monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-gold: var(--gold);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom animations */
+@keyframes star-pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes checkmark {
+  0% { stroke-dashoffset: 100; }
+  100% { stroke-dashoffset: 0; }
+}
+
+.animate-star-pulse {
+  animation: star-pulse 3s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-checkmark {
+  animation: checkmark 0.5s ease-out forwards;
+}
+
+/* Glow effects */
+.glow-violet {
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.4);
+}
+
+.glow-violet-hover:hover {
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.4);
+}
+
+/* Star field background */
+.star-field {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  animation: star-pulse 3s ease-in-out infinite;
+}
+
+/* Audio player styles */
+.audio-progress {
+  @apply appearance-none bg-secondary rounded-full h-1 cursor-pointer;
+}
+
+.audio-progress::-webkit-slider-thumb {
+  @apply appearance-none w-3 h-3 rounded-full bg-primary cursor-pointer;
+}
+
+.audio-progress::-moz-range-thumb {
+  @apply w-3 h-3 rounded-full bg-primary cursor-pointer border-none;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted-foreground);
+}
+
+/* Genre badge colors */
+.genre-country { @apply bg-amber-500/20 text-amber-400 border-amber-500/30; }
+.genre-pop { @apply bg-pink-500/20 text-pink-400 border-pink-500/30; }
+.genre-acoustic { @apply bg-emerald-500/20 text-emerald-400 border-emerald-500/30; }
+.genre-ballad { @apply bg-blue-500/20 text-blue-400 border-blue-500/30; }
+.genre-upbeat { @apply bg-orange-500/20 text-orange-400 border-orange-500/30; }
